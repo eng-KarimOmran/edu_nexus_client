@@ -1,0 +1,24 @@
+import z from "zod";
+import * as Schema from "./employee.schema"
+
+export type GetAllLessonsDto = {
+    query: z.infer<
+        typeof Schema.getAllLessonsSchema.query
+    >;
+}
+
+
+export type GetClientDto = {
+    query: z.infer<
+        typeof Schema.getClientSchema.query
+    >;
+}
+
+
+export type GetAllCarAndLessonDto = {
+    query: z.infer<typeof Schema.GetAllCarAndLessonSchema.query>;
+};
+
+export type GetAllEmployeesWithLessonDto = {
+    query: z.infer<typeof Schema.GetAllEmployeesWithLessonSchema.query>;
+}
