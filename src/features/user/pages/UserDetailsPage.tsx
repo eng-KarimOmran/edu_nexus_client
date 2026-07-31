@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import EmptyState from "@/components/EmptyState/EmptyState";
 import DisplayDetails, {
@@ -27,7 +27,6 @@ import { useUserDetails } from "../api/user.query";
 import type { DataTableProps } from "@/components/Table/TableUi";
 import type { Academy } from "@/features/academy/academy.type";
 import ShowMore from "@/components/ShowMore/ShowMore";
-import { enumTranslations } from "@/lib/enumTranslations";
 import TableUi from "@/components/Table/TableUi";
 import {
   GetContactLink,
@@ -37,7 +36,8 @@ import type { JobProfile } from "@/features/jobProfile/jobProfile.type";
 import { Button } from "@/components/ui/button";
 import { useDialogState } from "@/store/DialogState";
 import AddJobProfileForm from "@/features/jobProfile/components/jobProfileForm/AddJobProfileForm";
-import { ROUTE_BUILDERS } from "@/routes/routes.builders";
+import ActionsJobProfile from "@/features/jobProfile/config/jobProfile.actions";
+import { columns } from "@/features/jobProfile/config/jobProfile.columns";
 
 export default function UserDetailsPage() {
   const { userId } = useParams();
@@ -191,70 +191,9 @@ export default function UserDetailsPage() {
   const jobProfileTable: DataTableProps<JobProfile> = {
     data: data.jobProfile ? [data.jobProfile] : [],
 
-    headers: [
-      {
-        key: "id",
-        header: "المعرف",
-        display: (item) => <ShowMore text={item.id} columns={6} />,
-      },
+    headers: columns,
 
-      {
-        key: "jobProfileType",
-        header: "الصلاحية",
-        display: (item) => enumTranslations[item.jobProfileType],
-      },
-
-      {
-        key: "supportType",
-        header: "نوع الدعم",
-        display: (item) =>
-          item.supportType ? enumTranslations[item.supportType] : "-",
-      },
-
-      {
-        key: "baseSalary",
-        header: "الراتب الأساسي",
-        display: (item) => item.baseSalary,
-      },
-
-      {
-        key: "lessonPrice",
-        header: "سعر الحصة",
-        display: (item) => item.lessonPrice,
-      },
-
-      {
-        key: "targetCount",
-        header: "التارجت",
-        display: (item) => item.targetCount,
-      },
-
-      {
-        key: "bonusAmount",
-        header: "البونص",
-        display: (item) => item.bonusAmount,
-      },
-
-      {
-        key: "isActive",
-        header: "الحالة",
-        display: (item) => (
-          <BadgeDemo
-            type={item.isActive ? "TRUE" : "FALSE"}
-            text={item.isActive ? "نشط" : "غير نشط"}
-          />
-        ),
-      },
-      {
-        key: "id",
-        header: "تفاصيل الملف الوظيفي",
-        display: (item) => (
-          <Button variant={"link"}>
-            <Link to={ROUTE_BUILDERS.jobProfileDetails(item.id)}>التفاصيل</Link>
-          </Button>
-        ),
-      },
-    ],
+    actions: (item) => <ActionsJobProfile item={item} />,
   };
 
   return (

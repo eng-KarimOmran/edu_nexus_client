@@ -21,6 +21,7 @@ import {
   RiCarLine,
   RiDeleteBinLine,
   RiEditBoxLine,
+  RiCalendarScheduleLine,
 } from "@remixicon/react";
 
 import { Link } from "react-router-dom";
@@ -172,6 +173,18 @@ const CardCarAndLesson = ({
                 >
                   تفاصيل الاشتراك
                 </Link>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <RiCalendarScheduleLine className="size-5" />
+                  <span>إجمالي الحصص</span>
+                </div>
+
+                <span>
+                  {lesson.subscription.lessons.length} /{" "}
+                  {lesson.subscription.totalSessions}
+                </span>
               </div>
 
               <div className="flex items-center justify-between">

@@ -17,6 +17,7 @@ import { BadgeDemo } from "@/components/CustomBadge/CustomBadge";
 import { enumTranslations } from "@/lib/enumTranslations";
 import { Button } from "@/components/ui/button";
 import {
+  RiCalendarScheduleLine,
   RiCarLine,
   RiGraduationCapLine,
   RiMapPinLine,
@@ -125,6 +126,14 @@ export default function MyLessonsPage({ date }: { date: DateFilter }) {
               <li className="flex items-center gap-2">
                 <RiRouteLine />
                 <span>البرنامج:</span> {l.subscription.courseName}
+              </li>
+              <li className="flex items-center gap-2">
+                <RiCalendarScheduleLine />
+                <span>إجمالي الحصص:</span>
+                <span>
+                  {l.subscription.lessons.length} /
+                  {l.subscription.totalSessions}
+                </span>
               </li>
               <li className="flex items-center gap-2">
                 <RiMapPinLine />

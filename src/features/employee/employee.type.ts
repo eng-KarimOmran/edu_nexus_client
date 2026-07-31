@@ -61,6 +61,8 @@ export interface Lesson {
     subscription: {
         id: string,
         courseName: true
+        totalSessions: number,
+        lessons: { id: string }[]
     }
 }
 
@@ -87,6 +89,11 @@ export interface BaseLesson {
     area: {
         id: string,
         name: string,
+    },
+
+    subscription: {
+        totalSessions: number,
+        lessons: { id: string }[]
     }
 }
 

@@ -10,16 +10,7 @@ export const columns: Header<JobProfile>[] = [
     header: "معرف الملف",
     display: (data) => <ShowMore text={data.id} columns={11} />,
   },
-  {
-    key: "user",
-    header: "الاسم",
-    display: (data) => data.user.name,
-  },
-  {
-    key: "user",
-    header: "الهاتف",
-    display: (data) => data.user.phone,
-  },
+  
   {
     key: "jobProfileType",
     header: "الصلاحية",
