@@ -36,11 +36,16 @@ export default function TableFilter({
     isChecked: boolean,
   ) => {
     const params = new URLSearchParams(searchParams);
+
     if (isChecked) {
       params.set(key, val);
     } else {
       params.delete(key);
     }
+
+    // عند تغيير أي فلتر ارجع لأول صفحة
+    params.set("page", "1");
+
     setSearchParams(params);
   };
 
@@ -49,10 +54,12 @@ export default function TableFilter({
       <DropdownMenuTrigger asChild>
         <Button variant="outline">فلاتر</Button>
       </DropdownMenuTrigger>
+
       <DropdownMenuContent className="w-40" align="end">
         {data.map((g) => (
-          <DropdownMenuGroup>
-            <DropdownMenuLabel key={g.group}>{g.group}</DropdownMenuLabel>
+          <DropdownMenuGroup key={g.group}>
+            <DropdownMenuLabel>{g.group}</DropdownMenuLabel>
+
             {g.option.map((o) => (
               <DropdownMenuItem
                 key={`${o.key}-${o.val}`}
@@ -66,9 +73,10 @@ export default function TableFilter({
                     id={`${o.key}-${o.val}`}
                     checked={searchParams.get(o.key) === o.val}
                     onCheckedChange={(checked) =>
-                      handleCheckedChange(o.key, o.val, !!checked)
+                      handleCheckedChange(o.key, o.val, Boolean(checked))
                     }
                   />
+
                   <span>{o.label}</span>
                 </label>
               </DropdownMenuItem>

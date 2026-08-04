@@ -15,6 +15,8 @@ import { enumTranslations } from "@/lib/enumTranslations";
 import { BadgeDemo } from "@/components/CustomBadge/CustomBadge";
 import { formatDate } from "@/lib/formatDate";
 import SubscriptionActions from "@/features/subscription/config/subscription.actions";
+import { useEffect } from "react";
+import { RiMapPinLine } from "@remixicon/react";
 
 export default function AreaWithSubscriptionPage() {
   const [searchParams] = useSearchParams();
@@ -29,7 +31,12 @@ export default function AreaWithSubscriptionPage() {
     isActive: true,
   });
 
-  const areaId = searchParams.get("areaId") ?? "";
+  const areaId =
+    searchParams.get("areaId") ?? localStorage.getItem("areaId") ?? "";
+
+  useEffect(() => {
+    localStorage.setItem("areaId", areaId);
+  }, [areaId]);
 
   const { data, isLoading } = useAreaWithSubscription({
     areaId,
@@ -102,17 +109,20 @@ export default function AreaWithSubscriptionPage() {
 
     headers,
 
-    filters: [
-      {
-        group: isLoadingAreas ? "جاري تحميل المناطق..." : "المناطق",
-        option:
-          areas?.items.map((area) => ({
-            key: "areaId",
-            label: area.name,
-            val: area.id,
-          })) ?? [],
-      },
-    ],
+    filters:
+      page <= 1
+        ? [
+            {
+              group: isLoadingAreas ? "جاري تحميل المناطق..." : "المناطق",
+              option:
+                areas?.items.map((area) => ({
+                  key: "areaId",
+                  label: area.name,
+                  val: area.id,
+                })) ?? [],
+            },
+          ]
+        : undefined,
 
     actions: (item) => (
       <SubscriptionActions academyId={item.academyId} item={item} />
@@ -134,7 +144,26 @@ export default function AreaWithSubscriptionPage() {
         <PageHeader {...headerProps} />
       </div>
 
-      <div>{data?.area.name}</div>
+      {data?.area ? (
+        <div className="flex w-fit items-center gap-3 rounded-lg border bg-muted/50 px-4 py-3">
+          <RiMapPinLine className="size-5 text-primary" />
+          <div className="flex flex-col">
+            <span className="text-xs text-muted-foreground">
+              المنطقة الحالية
+            </span>
+            <span className="font-semibold">{data.area.name}</span>
+          </div>
+        </div>
+      ) : (
+        <div className="flex w-fit items-center gap-3 rounded-lg border border-dashed bg-muted/30 px-4 py-3 text-muted-foreground">
+          <RiMapPinLine className="size-5" />
+          <div className="flex flex-col">
+            <span className="text-xs">المنطقة الحالية</span>
+            <span className="font-medium">لم يتم اختيار منطقة</span>
+          </div>
+        </div>
+      )}
+
       <TableUi {...tableProps} />
     </section>
   );

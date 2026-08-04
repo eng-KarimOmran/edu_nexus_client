@@ -13,7 +13,7 @@ import {
 
 import { queryKey } from "../area.constants";
 
-export const useAreas = (query?: GetAllAreasDto["query"]) => {
+export const useAreas = (query?: GetAllAreasDto["query"], enabled: boolean = true) => {
     return useAppQuery<GetAllAreasDto, Area>({
         queryFn: (params) => getAllAreas({
             query: { ...query, ...params.query },
@@ -25,6 +25,7 @@ export const useAreas = (query?: GetAllAreasDto["query"]) => {
 
         filters: ["supportType", "isActive"],
 
+        enabled
     });
 };
 
