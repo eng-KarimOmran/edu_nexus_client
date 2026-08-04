@@ -70,6 +70,9 @@ export const UpdateCourseSchema = {
             featuredReason: z.string().optional(),
 
             isActive: boolean.optional(),
+
+            showOnWebsite: boolean.optional()
+
         })
         .refine(
             (data) => {

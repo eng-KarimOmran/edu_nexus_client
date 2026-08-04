@@ -27,7 +27,8 @@ export const UpdateAreaSchema = {
         name: entityName.optional(),
         supportType: supportType.optional(),
         isActive: boolean.optional(),
-        travelDurationInMinutes: number.optional()
+        travelDurationInMinutes: number.optional(),
+        showOnWebsite: boolean.optional()
     }),
 };
 

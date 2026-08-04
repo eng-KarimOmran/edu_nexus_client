@@ -26,6 +26,7 @@ export type DataTableProps<T> = {
   isFetching?: boolean;
   filters?: TableFilterProps["data"];
   isLimit?: boolean;
+  noDataTableText?: string;
 };
 
 export default function TableUi<T>({
@@ -40,6 +41,7 @@ export default function TableUi<T>({
   isPagination,
   isSearch,
   isLimit,
+  noDataTableText = " لا يوجد بيانات لعرضها",
 }: DataTableProps<T>) {
   const [searchParams, setSearchParams] = useSearchParams();
   const colSpan = headers.length + (actions ? 1 : 0);
@@ -96,7 +98,7 @@ export default function TableUi<T>({
               </TableRow>
             ))
           ) : (
-            <NoDataTable colSpan={colSpan} />
+            <NoDataTable noDataTableText={noDataTableText} colSpan={colSpan} />
           )}
         </TableBody>
       </Table>

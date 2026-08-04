@@ -1,5 +1,8 @@
 import type { LessonStatus, PaymentMethod } from "@/types/enums";
 import type { Car } from "../car/car.type";
+import type { PaginatedResponse } from "@/types/axios";
+import type { SubscriptionWithClient } from "../subscription/subscription.type";
+import type { Area } from "../area/area.type";
 
 export interface wallets {
     id: string;
@@ -147,3 +150,10 @@ export interface EmployeeWithLessons {
         }[];
     };
 }
+
+export type AreaWithSubscriptionResponse = PaginatedResponse<
+    SubscriptionWithClient,
+    {
+        area: Area;
+    }
+>;

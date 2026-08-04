@@ -2,6 +2,7 @@ import type { SubscriptionStatus, Transmission } from "@/types/enums";
 import type { WalletMovement } from "../ledgerTransaction/ledgerTransaction.type";
 import type { Lesson } from "../lesson/lesson.type";
 import type { CreatedBy } from "@/types/createdBy";
+import type { Client } from "../client/client.type";
 
 export type Subscription = {
     id: string;
@@ -45,4 +46,8 @@ export interface SubscriptionDetails extends Subscription {
     walletMovements: WalletMovement[];
     paymentSummary: SubscriptionPaymentSummary;
     createdBy?: CreatedBy
+}
+
+export interface SubscriptionWithClient extends Subscription {
+    client: Client
 }

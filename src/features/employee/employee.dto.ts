@@ -22,3 +22,7 @@ export type GetAllCarAndLessonDto = {
 export type GetAllEmployeesWithLessonDto = {
     query: z.infer<typeof Schema.GetAllEmployeesWithLessonSchema.query>;
 }
+
+export type GetAreaWithSubscriptionDto = {
+    query: z.infer<typeof Schema.getAreaWithSubscriptionSchema.query>;
+}

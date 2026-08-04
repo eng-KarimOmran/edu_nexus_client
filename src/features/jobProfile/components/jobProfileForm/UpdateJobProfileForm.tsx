@@ -3,7 +3,8 @@ import { queryClient } from "@/lib/queryClient";
 import { useDialogState } from "@/store/DialogState";
 import { toast } from "sonner";
 
-import { queryKey } from "../../jobProfile.constants";
+import { queryKey as queryKeyJobProfile } from "../../jobProfile.constants";
+import { queryKey as queryKeyUser } from "../../../user/user.constants";
 
 import type { JobProfile } from "../../jobProfile.type";
 import type { UpdateJobProfileDto } from "../../jobProfile.dto";
@@ -28,6 +29,7 @@ export default function UpdateJobProfileForm({ item }: { item: JobProfile }) {
       lessonPrice: item.lessonPrice,
       targetCount: item.targetCount,
       bonusAmount: item.bonusAmount,
+      showOnWebsite: item.showOnWebsite,
     },
 
     inputs: [
@@ -74,6 +76,11 @@ export default function UpdateJobProfileForm({ item }: { item: JobProfile }) {
         label: "المكافأة",
         col: "half",
       },
+      {
+        name: "showOnWebsite",
+        type: "switch",
+        label: "عرض فى الموقع إلكتروني",
+      },
     ],
 
     schema: updateJobProfileSchema.body,
@@ -89,7 +96,9 @@ export default function UpdateJobProfileForm({ item }: { item: JobProfile }) {
       }),
 
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey });
+      queryClient.invalidateQueries({ queryKey: queryKeyJobProfile });
+      queryClient.invalidateQueries({ queryKey: queryKeyUser });
+
       toast.success("تم تحديث الوظيفة بنجاح");
       setConfigDialog(null);
     },

@@ -43,6 +43,8 @@ export const updateJobProfileSchema = {
 
         targetCount: number.optional(),
         bonusAmount: price.optional(),
+
+        showOnWebsite: boolean.optional()
     }),
 };
 

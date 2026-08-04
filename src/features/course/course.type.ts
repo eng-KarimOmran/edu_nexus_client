@@ -12,6 +12,7 @@ export type Course = {
     featuredReason: string;
     academyId: string;
     createdAt: string;
+    showOnWebsite: boolean
 };
 
 export type CourseFeature = {

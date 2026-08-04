@@ -19,9 +19,9 @@ export interface PaginationMeta {
   totalPages: number;
 }
 
-export interface PaginatedResponse<T> extends BaseResponse {
+export interface PaginatedResponse<T, E extends object = object> extends BaseResponse {
   data: {
     items: T[];
     pagination: PaginationMeta;
-  };
+  } & E;
 }

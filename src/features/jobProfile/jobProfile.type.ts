@@ -13,6 +13,7 @@ export interface JobProfile {
     bonusAmount: number;
     createdAt: string;
     user: User
+    showOnWebsite:boolean
 }
 
 

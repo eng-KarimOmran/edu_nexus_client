@@ -8,7 +8,6 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Label } from "../ui/label";
 import type { SetURLSearchParams } from "react-router-dom";
 
 export interface TableFilterProps {
@@ -55,16 +54,23 @@ export default function TableFilter({
           <DropdownMenuGroup>
             <DropdownMenuLabel key={g.group}>{g.group}</DropdownMenuLabel>
             {g.option.map((o) => (
-              <DropdownMenuItem key={`${o.key}-${o.val}`}>
-                <Checkbox
-                  id={`${o.key}-${o.val}`}
-                  name={o.key}
-                  checked={searchParams.get(o.key) === o.val}
-                  onCheckedChange={(isChecked) =>
-                    handleCheckedChange(o.key, o.val, !!isChecked)
-                  }
-                />
-                <Label htmlFor={`${o.key}-${o.val}`}>{o.label}</Label>
+              <DropdownMenuItem
+                key={`${o.key}-${o.val}`}
+                onSelect={(e) => e.preventDefault()}
+              >
+                <label
+                  htmlFor={`${o.key}-${o.val}`}
+                  className="flex w-full cursor-pointer items-center gap-2"
+                >
+                  <Checkbox
+                    id={`${o.key}-${o.val}`}
+                    checked={searchParams.get(o.key) === o.val}
+                    onCheckedChange={(checked) =>
+                      handleCheckedChange(o.key, o.val, !!checked)
+                    }
+                  />
+                  <span>{o.label}</span>
+                </label>
               </DropdownMenuItem>
             ))}
           </DropdownMenuGroup>

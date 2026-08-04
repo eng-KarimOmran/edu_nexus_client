@@ -35,6 +35,7 @@ export default function UpdateCourseForm({
       sessionDurationMinutes: item.sessionDurationMinutes,
       featuredReason: item.featuredReason,
       isActive: item.isActive,
+      showOnWebsite: item.showOnWebsite,
     },
 
     inputs: [
@@ -93,6 +94,11 @@ export default function UpdateCourseForm({
         name: "isActive",
         type: "switch",
         label: "نشط",
+      },
+      {
+        name: "showOnWebsite",
+        type: "switch",
+        label: "عرض فى الموقع إلكتروني",
       },
     ],
 

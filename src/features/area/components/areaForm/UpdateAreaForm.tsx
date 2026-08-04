@@ -29,6 +29,7 @@ export default function UpdateAreaForm({ item }: { item: Area }) {
       supportType: item.supportType,
       isActive: item.isActive,
       travelDurationInMinutes: item.travelDurationInMinutes,
+      showOnWebsite: item.showOnWebsite,
     },
 
     inputs: [
@@ -37,7 +38,7 @@ export default function UpdateAreaForm({ item }: { item: Area }) {
         type: "text",
         label: "اسم المنطقة",
       },
-      
+
       {
         name: "supportType",
         type: "select",
@@ -55,6 +56,12 @@ export default function UpdateAreaForm({ item }: { item: Area }) {
         name: "isActive",
         type: "switch",
         label: "نشطة",
+      },
+
+      {
+        name: "showOnWebsite",
+        type: "switch",
+        label: "عرض فى الموقع إلكتروني",
       },
     ],
 

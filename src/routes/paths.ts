@@ -75,5 +75,8 @@ export const PATHS = {
 
     carAndLesson: "car-and-lesson",
 
-    employeeWithLessons: "employee-with-lessons"
+    employeeWithLessons: "employee-with-lessons",
+
+    areaWithSubscription: "area-with-subscription"
+
 } as const;

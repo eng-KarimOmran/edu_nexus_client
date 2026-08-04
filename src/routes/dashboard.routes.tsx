@@ -46,6 +46,7 @@ import {
   RiCalendarTodoLine,
   RiCarLine,
   RiCheckboxCircleLine,
+  RiCrosshairFill,
   RiExchangeDollarLine,
   RiHandCoinFill,
   RiLayout2Line,
@@ -64,6 +65,7 @@ import { ROLES } from "./roles";
 import ChangePasswordDashboardPage from "@/features/auth/pages/ChangePasswordDashboard";
 import GetAllCarAndLesson from "@/features/employee/pages/GetAllCarAndLesson";
 import EmployeeWithLessons from "@/features/employee/pages/EmployeeWithLessons";
+import AreaWithSubscriptionPage from "@/features/employee/pages/AreaWithSubscriptionPage";
 
 export const DASHBOARD_ROUTES: AppRoute[] = [
   {
@@ -113,6 +115,16 @@ export const DASHBOARD_ROUTES: AppRoute[] = [
       icon: <RiCalendar2Line />,
     },
     roles: [ROLES.CAPTAIN, ROLES.MANAGER],
+  },
+
+  {
+    path: PATHS.areaWithSubscription,
+    element: <AreaWithSubscriptionPage />,
+    nav: {
+      label: "الأشتراكات حسب المنطقة",
+      icon: <RiCrosshairFill />,
+    },
+    roles: [ROLES.OWNER, ROLES.MANAGER],
   },
 
   {

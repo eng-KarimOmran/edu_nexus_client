@@ -7,4 +7,5 @@ export type Area = {
     travelDurationInMinutes: number
     isActive: boolean;
     createdAt: string;
+    showOnWebsite: boolean
 };
